@@ -1,0 +1,7 @@
+matalan-kynnyksen/
+│
+├── index.html
+├── style.css
+└── assets/
+    ├── paper-texture.png
+    └── profile.jpg
