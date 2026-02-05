@@ -24,13 +24,21 @@ body {
 
 /* HEADER - COMPACT */
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   background: var(--bg-main);
   padding: 12px 40px 10px;
   z-index: 100;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+header.hidden {
+  transform: translateY(-100%);
 }
 
 .site-title {
@@ -82,6 +90,10 @@ section {
   box-sizing: border-box;
   width: calc(100% - 80px);
   scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+section:first-of-type {
+  margin-top: calc(var(--header-height) + 60px);
 }
 
 section h2 {
