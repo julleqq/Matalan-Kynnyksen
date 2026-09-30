@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Reclaim Your Attention</title>
+<meta name="description" content="An evidence-based, interactive guide to reducing phone and screen time: what research shows actually works, and how to build your own plan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f2ea; --surface:#fffdf8; --surface-2:#efe9dd; --ink:#1c2729; --ink-2:#4a5759; --muted:#7a8586;
+  --line:#e2dbcd; --accent:#1f7a6d; --accent-ink:#ffffff; --accent-soft:#d7ece7;
+  --coral:#d8664a; --coral-soft:#f8e0d7; --gold:#c99a2e; --gold-soft:#f5ead0; --violet:#6c5ba7; --violet-soft:#e6e1f4;
+  --shadow:0 1px 2px rgba(28,39,41,.06),0 8px 24px rgba(28,39,41,.07);
+  --radius:18px; --maxw:1120px;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1517; --surface:#172023; --surface-2:#1e2a2d; --ink:#e7ecea; --ink-2:#b5c0bf; --muted:#8a9796;
+    --line:#2a3639; --accent:#5cc2b1; --accent-ink:#0f1517; --accent-soft:#1d3a36;
+    --coral:#f0957c; --coral-soft:#3d2620; --gold:#e3bd62; --gold-soft:#3a3020; --violet:#a597e0; --violet-soft:#2a2540;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1517; --surface:#172023; --surface-2:#1e2a2d; --ink:#e7ecea; --ink-2:#b5c0bf; --muted:#8a9796;
+  --line:#2a3639; --accent:#5cc2b1; --accent-ink:#0f1517; --accent-soft:#1d3a36;
+  --coral:#f0957c; --coral-soft:#3d2620; --gold:#e3bd62; --gold-soft:#3a3020; --violet:#a597e0; --violet-soft:#2a2540;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:clamp(1.8rem,4.5vw,2.6rem)}
+h3{font-size:1.25rem}
+p{margin:0 0 1em}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+@media (min-width:720px){.wrap{padding:0 28px}}
+section{padding:72px 0}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.6em}
+.lede{font-size:1.1rem;color:var(--ink-2);max-width:62ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+
+/* top bar */
+.topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:12px;height:58px}
+.brand{font-family:var(--serif);font-weight:700;font-size:1.05rem;white-space:nowrap;text-decoration:none;color:var(--ink)}
+.brand span{color:var(--accent)}
+.navlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.navlinks.fade-r{mask-image:linear-gradient(90deg,#000 85%,transparent);-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent)}
+.navlinks.fade-l{mask-image:linear-gradient(90deg,transparent,#000 15%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 15%)}
+.navlinks.fade-l.fade-r{mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{font-size:.83rem;font-weight:600;color:var(--ink-2);text-decoration:none;padding:6px 9px;border-radius:999px;white-space:nowrap}
+.navlinks a.active,.navlinks a:hover{background:var(--accent-soft);color:var(--accent)}
+.iconbtn{border:1px solid var(--line);background:var(--surface);border-radius:999px;width:38px;height:38px;display:grid;place-items:center;flex:none}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:var(--accent);width:0}
+
+/* hero */
+.hero{padding:64px 0 48px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(2.4rem,7vw,4.4rem);max-width:15ch}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-grid{display:grid;gap:40px;align-items:center}
+@media (min-width:900px){.hero-grid{grid-template-columns:1.2fr .8fr}}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:12px 20px;font-weight:600;text-decoration:none;font-size:.96rem;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-sm{padding:8px 14px;font-size:.85rem}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.stat{padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line)}
+.stat b{display:block;font-family:var(--serif);font-size:2rem;line-height:1;color:var(--accent);margin-bottom:6px}
+.stat:nth-child(2) b{color:var(--coral)}
+.stat:nth-child(3) b{color:var(--violet)}
+.stat:nth-child(4) b{color:var(--gold)}
+.stat span{font-size:.84rem;color:var(--ink-2);line-height:1.4;display:block}
+.stat cite{font-style:normal;font-size:.72rem;color:var(--muted);display:block;margin-top:6px}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.35;z-index:-1}
+
+/* key idea strip */
+.keyidea{display:grid;gap:14px;margin-top:28px}
+@media (min-width:760px){.keyidea{grid-template-columns:repeat(3,1fr)}}
+.keyidea .card{padding:22px}
+.keyidea .num{font-family:var(--serif);font-size:1.4rem;color:var(--accent);font-weight:700}
+
+/* loop */
+.loop-grid{display:grid;gap:28px;align-items:center;margin-top:28px}
+@media (min-width:880px){.loop-grid{grid-template-columns:420px 1fr}}
+.loop-svg{width:100%;max-width:420px;margin:0 auto;display:block}
+.loop-node{cursor:pointer}
+.loop-node circle{transition:r .2s, fill .2s}
+.loop-node text{font-family:var(--sans);font-weight:700;font-size:13px;pointer-events:none}
+.loop-panel{padding:26px}
+.loop-panel .tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.75rem;font-weight:700;background:var(--accent-soft);color:var(--accent);margin-bottom:10px}
+.loop-panel h3{font-size:1.5rem}
+.breaker{margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--surface-2);font-size:.95rem}
+.breaker b{color:var(--accent)}
+.loop-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+.loop-tabs button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.loop-tabs button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+/* calculator */
+.calc{padding:26px;display:grid;gap:26px}
+@media (min-width:880px){.calc{grid-template-columns:1fr 1.2fr;padding:34px}}
+.field{margin-bottom:22px}
+.field label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:8px;font-size:.95rem}
+.field label output{font-family:var(--serif);color:var(--accent);font-size:1.3rem}
+input[type=range]{width:100%;accent-color:var(--accent);height:28px}
+.calc-out{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.calc-out div{background:var(--surface-2);border-radius:14px;padding:16px}
+.calc-out b{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.1rem);display:block;line-height:1.1}
+.calc-out span{font-size:.82rem;color:var(--ink-2)}
+.calc-out .big{grid-column:1/-1;background:var(--accent-soft)}
+.calc-out .big b{color:var(--accent);font-size:clamp(2rem,6vw,3rem)}
+.lifebar{display:flex;flex-wrap:wrap;gap:3px;margin-top:14px}
+.lifebar i{width:10px;height:10px;border-radius:3px;background:var(--line)}
+.lifebar i.on{background:var(--coral)}
+.instead{margin-top:14px;font-size:.93rem;color:var(--ink-2)}
+.instead strong{color:var(--ink)}
+
+/* quiz */
+.quiz{padding:24px;margin-top:28px}
+@media (min-width:720px){.quiz{padding:34px}}
+.q{padding:16px 0;border-bottom:1px solid var(--line)}
+.q:last-of-type{border-bottom:none}
+.q p{font-weight:600;margin-bottom:10px}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.opts button{border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 4px;font-size:.8rem;font-weight:600;color:var(--ink-2);line-height:1.2}
+.opts button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.quiz-result{margin-top:22px;padding:22px;border-radius:14px;background:var(--surface-2);display:none}
+.quiz-result.show{display:block;animation:fade .4s}
+.meter{height:12px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--gold),var(--coral));position:relative;margin:14px 0 6px}
+.meter i{position:absolute;top:-5px;width:22px;height:22px;border-radius:50%;background:var(--surface);border:4px solid var(--ink);transform:translateX(-50%);transition:left .6s cubic-bezier(.2,.8,.2,1)}
+.recs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:.84rem;font-weight:600;color:var(--ink);text-decoration:none}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+
+/* matrix */
+.matrix{margin-top:28px;display:grid;grid-template-columns:auto repeat(3,1fr);gap:8px;font-size:.85rem}
+.matrix .hd{font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:.7rem;padding:6px 4px;text-align:center}
+.matrix .rh{writing-mode:vertical-rl;transform:rotate(180deg);font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-size:.7rem;text-align:center;padding:4px 2px}
+.matrix .cell{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:6px;min-height:80px}
+.matrix .cell.sweet{background:var(--accent-soft);border-color:var(--accent)}
+.matrix .cell button{border:none;background:var(--surface-2);border-radius:8px;padding:6px 8px;font-size:.78rem;font-weight:600;text-align:left;line-height:1.25}
+.matrix .cell.sweet button{background:var(--surface)}
+.matrix .cell button:hover{color:var(--accent)}
+@media (min-width:720px){.matrix .cell button{font-size:.84rem}}
+
+/* methods */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 8px}
+.filters button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-size:.84rem;font-weight:600;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.sortrow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.sortrow select{font:inherit;font-size:.88rem;padding:7px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.methods{display:grid;gap:16px}
+@media (min-width:760px){.methods{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.methods{grid-template-columns:repeat(3,1fr)}}
+.m{padding:20px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s, transform .2s;scroll-margin-top:80px}
+.m.flash{animation:flash 1.4s}
+.m-top{display:flex;align-items:flex-start;gap:12px}
+.m-ico{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.35rem;background:var(--surface-2)}
+.m h3{font-size:1.12rem;margin:0 0 2px}
+.m .cat{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.m .sum{font-size:.93rem;color:var(--ink-2);margin:0}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);display:inline-flex;align-items:center;gap:5px}
+.dots{display:inline-flex;gap:2px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--accent)}
+.m details{border-top:1px solid var(--line);padding-top:8px}
+.m summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--accent);list-style:none;display:flex;align-items:center;gap:6px;padding:4px 0}
+.m summary::-webkit-details-marker{display:none}
+.m summary::before{content:"+";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--accent-soft);font-size:.9rem}
+.m details[open] summary::before{content:"–"}
+.m .finding{background:var(--surface-2);border-radius:10px;padding:12px;font-size:.88rem;margin:8px 0}
+.m .finding b{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+.m ol{padding-left:20px;margin:6px 0;font-size:.9rem}
+.m ol li{margin-bottom:4px}
+.m .caveat{font-size:.82rem;color:var(--muted);font-style:italic}
+.m-foot{margin-top:auto;display:flex;justify-content:flex-end}
+.addbtn{border:1.5px solid var(--accent);color:var(--accent);background:transparent;border-radius:999px;padding:7px 14px;font-size:.82rem;font-weight:700}
+.addbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+
+/* urge */
+.urge{padding:28px;display:grid;gap:24px;align-items:center;text-align:center}
+@media (min-width:820px){.urge{grid-template-columns:1fr 1fr;text-align:left;padding:40px}}
+.breath{width:min(260px,70vw);aspect-ratio:1;margin:0 auto;position:relative;display:grid;place-items:center}
+.breath .ring{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,var(--accent-soft) 0%,transparent 70%)}
+.breath .core{width:45%;aspect-ratio:1;border-radius:50%;background:var(--accent);transition:transform 4s ease-in-out;box-shadow:0 0 0 12px color-mix(in srgb,var(--accent) 18%,transparent)}
+.breath .label{position:absolute;font-weight:700;color:var(--accent-ink);font-size:.95rem;text-align:center;pointer-events:none}
+.breath svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.urge-msg{min-height:3.2em;font-family:var(--serif);font-size:1.25rem;transition:opacity .4s}
+.urge-time{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
+.urge .cta-row{justify-content:center}
+@media (min-width:820px){.urge .cta-row{justify-content:flex-start}}
+
+/* plan */
+.plan-grid{display:grid;gap:18px;margin-top:28px}
+@media (min-width:900px){.plan-grid{grid-template-columns:1fr 1fr}}
+.plan-box{padding:24px}
+.plan-list{list-style:none;padding:0;margin:10px 0 0}
+.plan-list li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+.plan-list li:last-child{border-bottom:none}
+.plan-list li span{flex:1}
+.x{border:none;background:var(--surface-2);border-radius:50%;width:28px;height:28px;flex:none;font-size:1rem;line-height:1;color:var(--muted)}
+.ifthen{display:grid;gap:10px}
+.ifthen label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.ifthen select,.ifthen input{width:100%;font:inherit;font-size:.95rem;padding:11px 12px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.ifthen-row{display:grid;gap:6px}
+.rule{background:var(--violet-soft);border-radius:12px;padding:12px 14px;font-size:.93rem}
+.rule b{color:var(--violet)}
+.plan-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+
+/* roadmap */
+.weeks{display:grid;gap:16px;margin-top:28px}
+@media (min-width:760px){.weeks{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.weeks{grid-template-columns:repeat(4,1fr)}}
+.week{padding:22px;position:relative;overflow:hidden}
+.week .wk{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.week h3{margin:4px 0 12px}
+.week .bar{position:absolute;top:0;left:0;height:4px;background:var(--accent);transition:width .4s}
+.task{display:flex;gap:10px;align-items:flex-start;padding:7px 0;font-size:.9rem;cursor:pointer}
+.task input{appearance:none;-webkit-appearance:none;flex:none;width:20px;height:20px;border-radius:6px;border:2px solid var(--line);margin-top:2px;display:grid;place-items:center;cursor:pointer;background:var(--surface)}
+.task input:checked{background:var(--accent);border-color:var(--accent)}
+.task input:checked::after{content:"";width:5px;height:10px;border:solid var(--accent-ink);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.task input:checked + span{color:var(--muted);text-decoration:line-through}
+.overall{display:flex;align-items:center;gap:12px;margin-top:18px;font-weight:600}
+.overall .track{flex:1;height:10px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.overall .track i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+/* myths */
+.myths{display:grid;gap:14px;margin-top:28px}
+@media (min-width:760px){.myths{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1080px){.myths{grid-template-columns:repeat(3,1fr)}}
+.flip{perspective:1200px;min-height:240px;border:none;background:none;padding:0;text-align:left}
+.flip-inner{position:relative;width:100%;height:100%;min-height:240px;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip[aria-pressed="true"] .flip-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;border:1px solid var(--line);box-shadow:var(--shadow)}
+.face.front{background:var(--coral-soft)}
+.face.back{background:var(--surface);transform:rotateY(180deg);overflow:auto}
+.face .lbl{font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.face.front .lbl{color:var(--coral)}
+.face.back .lbl{color:var(--accent)}
+.face.front p{font-family:var(--serif);font-size:1.3rem;line-height:1.3}
+.face.back p{font-size:.9rem;color:var(--ink-2)}
+.face .hint{margin-top:auto;font-size:.78rem;color:var(--muted);font-weight:600}
+
+/* slips */
+.two{display:grid;gap:18px;margin-top:28px}
+@media (min-width:860px){.two{grid-template-columns:1fr 1fr}}
+.two .card{padding:26px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 14px 42px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;display:grid;place-items:center;font-size:.85rem}
+.help{background:var(--gold-soft);border-color:transparent}
+
+/* sources */
+.sources{columns:1;column-gap:32px;margin-top:24px;font-size:.86rem;color:var(--ink-2);padding-left:20px}
+@media (min-width:860px){.sources{columns:2}}
+.sources li{break-inside:avoid;margin-bottom:10px}
+footer{padding:40px 0 60px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+
+/* floating plan pill */
+.pill{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:60;background:var(--ink);color:var(--bg);border-radius:999px;padding:11px 16px;font-weight:700;font-size:.88rem;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.25);display:none;align-items:center;gap:8px}
+.pill.show{display:inline-flex;animation:pop .3s}
+.pill b{background:var(--accent);color:var(--accent-ink);border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-size:.78rem}
+.toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:.88rem;font-weight:600;opacity:0;pointer-events:none;transition:.3s;z-index:70;max-width:calc(100vw - 32px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:none;opacity:1}}
+@keyframes flash{0%,100%{border-color:var(--line)}20%,60%{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+@media print{
+  .topbar,.pill,.toast,.hero,#loop,#calc,#check,#map,#methods,#urge,#roadmap,#myths,#slips,footer,.plan-actions,.x,.ifthen{display:none!important}
+  body{background:#fff;color:#000}
+  #plan{padding:0}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Reclaim<span>.</span></a>
+    <nav class="navlinks" aria-label="Sections">
+      <a href="#loop">Why it's hard</a>
+      <a href="#calc">Your time</a>
+      <a href="#check">Self-check</a>
+      <a href="#map">Evidence map</a>
+      <a href="#methods">Methods</a>
+      <a href="#urge">Urge tool</a>
+      <a href="#plan">My plan</a>
+      <a href="#roadmap">30 days</a>
+      <a href="#myths">Myths</a>
+      <a href="#slips">Slips</a>
+      <a href="#sources">Sources</a>
+    </nav>
+    <button class="iconbtn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="blob" style="width:380px;height:380px;background:var(--accent);top:-80px;right:-120px"></div>
+  <div class="blob" style="width:300px;height:300px;background:var(--coral);bottom:-120px;left:-100px"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">An evidence-based guide</span>
+      <h1>Reclaim your <em>attention</em> from the screen.</h1>
+      <p class="lede">Cutting down on phone time is hard for almost everyone, and that isn't a personal failing. Phones and apps are designed to be hard to put down. The good news is that researchers have tested what helps. This guide collects the findings and turns them into something you can use today.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#check">Take the 2-minute self-check →</a>
+        <a class="btn btn-ghost" href="#methods">Browse the methods</a>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><b>57%</b><span>fewer app openings after 6 weeks with a short "pause before opening" nudge</span><cite>Grüning et al., PNAS 2023</cite></div>
+      <div class="stat reveal"><b>91%</b><span>of people improved in attention, mood or well-being after 2 weeks without mobile internet</span><cite>Castelo et al., PNAS Nexus 2025</cite></div>
+      <div class="stat reveal"><b>−45 min</b><span>daily use four months after a one-week "1 hour less per day" challenge</span><cite>Brailovskaia et al., 2022</cite></div>
+      <div class="stat reveal"><b>31%</b><span>of social media use is estimated to come from self-control problems, not choice</span><cite>Allcott et al., AER 2022</cite></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="keyidea">
+      <div class="card reveal"><div class="num">01</div><h3>Design beats willpower</h3><p class="small muted" style="margin:0">The strongest results come from changing your <em>environment</em>, meaning friction, settings and where the phone physically sits, not from trying harder.</p></div>
+      <div class="card reveal"><div class="num">02</div><h3>Reduce, don't just abstain</h3><p class="small muted" style="margin:0">Cutting back moderately tends to last longer than going cold turkey. Short "digital detoxes" show mixed results on their own.</p></div>
+      <div class="card reveal"><div class="num">03</div><h3>Fill the gap on purpose</h3><p class="small muted" style="margin:0">Benefits seem to come from what replaces the scrolling: people, movement, nature and sleep. Plan the replacement, not just the removal.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOOP -->
+<section id="loop">
+  <div class="wrap">
+    <span class="eyebrow">Why it's hard</span>
+    <h2>The habit loop in your pocket</h2>
+    <p class="lede">Most compulsive checking runs on an automatic loop. Once you can see each link, you can break it. Tap each stage.</p>
+    <div class="loop-grid">
+      <svg class="loop-svg" viewBox="0 0 400 400" role="group" aria-label="Habit loop diagram">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+        </defs>
+        <circle cx="200" cy="200" r="130" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="4 6"/>
+        <path d="M268 88 A130 130 0 0 1 312 132" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#arr)"/>
+        <path d="M312 268 A130 130 0 0 1 268 312" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#arr)"/>
+        <path d="M132 312 A130 130 0 0 1 88 268" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#arr)"/>
+        <path d="M88 132 A130 130 0 0 1 132 88" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#arr)"/>
+        <text x="200" y="192" text-anchor="middle" font-family="Fraunces, serif" font-size="22" font-weight="700" fill="var(--ink)">the loop</text>
+        <text x="200" y="216" text-anchor="middle" font-size="12" fill="var(--muted)" font-family="Inter, sans-serif">repeats ~100× a day</text>
+        <g class="loop-node" data-i="0" tabindex="0" role="button" aria-label="Trigger"><circle cx="200" cy="70" r="46"/><text x="200" y="75" text-anchor="middle">Trigger</text></g>
+        <g class="loop-node" data-i="1" tabindex="0" role="button" aria-label="Action"><circle cx="330" cy="200" r="46"/><text x="330" y="205" text-anchor="middle">Action</text></g>
+        <g class="loop-node" data-i="2" tabindex="0" role="button" aria-label="Reward"><circle cx="200" cy="330" r="46"/><text x="200" y="335" text-anchor="middle">Reward</text></g>
+        <g class="loop-node" data-i="3" tabindex="0" role="button" aria-label="Investment"><circle cx="70" cy="200" r="46"/><text x="70" y="205" text-anchor="middle">Hook-in</text></g>
+      </svg>
+      <div class="card loop-panel" aria-live="polite">
+        <span class="tag" id="loopTag">Stage 1 of 4</span>
+        <h3 id="loopTitle"></h3>
+        <p id="loopText"></p>
+        <div class="breaker" id="loopBreak"></div>
+        <div class="loop-tabs" id="loopTabs"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calc" style="background:var(--surface-2)">
+  <div class="wrap">
+    <span class="eyebrow">Make it visible</span>
+    <h2>What your screen time adds up to</h2>
+    <p class="lede">Check your phone's Screen Time / Digital Wellbeing panel for your real daily average (most people underestimate it), then move the sliders.</p>
+    <div class="card calc" style="margin-top:24px">
+      <div>
+        <div class="field"><label for="hrs">Daily phone time <output id="hrsOut">4 h</output></label><input type="range" id="hrs" min="0.5" max="10" step="0.25" value="4"></div>
+        <div class="field"><label for="age">Your age <output id="ageOut">30</output></label><input type="range" id="age" min="12" max="80" step="1" value="30"></div>
+        <div class="field"><label for="cut">If you cut back by <output id="cutOut">1 h</output></label><input type="range" id="cut" min="0.25" max="4" step="0.25" value="1"></div>
+        <p class="small muted">Assumes 16 waking hours a day and living to 80. These are rough illustrations, not predictions.</p>
+      </div>
+      <div>
+        <div class="calc-out">
+          <div class="big"><b id="oYears">–</b><span>of waking life on your phone from now to age 80, at this rate</span></div>
+          <div><b id="oYear">–</b><span>full days per year</span></div>
+          <div><b id="oPct">–</b><span>of your waking hours</span></div>
+          <div><b id="oSaved">–</b><span>hours freed per year by your cut</span></div>
+          <div><b id="oBooks">–</b><span>books you could read with that (~7 h each)</span></div>
+        </div>
+        <div class="lifebar" id="lifebar" aria-hidden="true"></div>
+        <p class="small muted" style="margin-top:6px">Each square = one waking hour of your day. Coral = phone.</p>
+        <p class="instead" id="instead"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELF CHECK -->
+<section id="check">
+  <div class="wrap">
+    <span class="eyebrow">Self-check · 2 minutes</span>
+    <h2>Where are you starting from?</h2>
+    <p class="lede">Eight quick reflections. This is <strong>not a diagnosis</strong>. It points you to the methods that fit your pattern best.</p>
+    <div class="card quiz">
+      <div id="quizQs"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+        <button class="btn btn-primary" id="quizGo">See my result</button>
+        <button class="btn btn-ghost" id="quizReset">Reset</button>
+      </div>
+      <div class="quiz-result" id="quizResult" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="map" style="background:var(--surface-2)">
+  <div class="wrap">
+    <span class="eyebrow">Evidence at a glance</span>
+    <h2>Effort vs. evidence</h2>
+    <p class="lede">Every method in this guide, placed by how much effort it takes and how strong the research is. Start in the <strong style="color:var(--accent)">highlighted corner</strong>: low effort, good evidence. Tap any method to jump to it.</p>
+    <div class="matrix" id="matrix"></div>
+    <p class="small muted" style="margin-top:12px">Evidence ratings are this guide's editorial judgment based on study design (randomised trials rate higher), size and consistency. See each method's "Research" section.</p>
+  </div>
+</section>
+
+<!-- METHODS -->
+<section id="methods">
+  <div class="wrap">
+    <span class="eyebrow">The toolkit</span>
+    <h2>Methods that work, and how to use them</h2>
+    <p class="lede">Pick two or three that fit your life. Stacking a few environmental changes works better than relying on any single trick. Tap <strong>+ Add to plan</strong> to build your personal plan.</p>
+    <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+    <div class="sortrow">
+      <span class="small muted" id="count"></span>
+      <label class="small">Sort: <select id="sort"><option value="evidence">Strongest evidence</option><option value="effort">Lowest effort</option><option value="az">A–Z</option></select></label>
+    </div>
+    <div class="methods" id="methodList"></div>
+  </div>
+</section>
+
+<!-- URGE -->
+<section id="urge" style="background:var(--surface-2)">
+  <div class="wrap">
+    <div class="card urge">
+      <div>
+        <span class="eyebrow">Interactive tool</span>
+        <h2>Surf the urge</h2>
+        <p class="lede">Cravings rise, peak and fade, often within a minute or two, if you don't feed them. "Urge surfing" is a mindfulness technique from addiction research: you observe the urge instead of obeying it. Use this the next time you reach for your phone on autopilot.</p>
+        <p class="urge-msg" id="urgeMsg">Ready when you are.</p>
+        <p class="urge-time" id="urgeTime">90 seconds</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" id="urgeBtn">Start 90 seconds</button>
+        </div>
+      </div>
+      <div class="breath">
+        <div class="ring"></div>
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="var(--line)" stroke-width="2"/><circle id="urgeArc" cx="50" cy="50" r="48" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="301.6" stroke-dashoffset="301.6"/></svg>
+        <div class="core" id="core"></div>
+        <div class="label" id="breathLabel">breathe</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section id="plan">
+  <div class="wrap">
+    <span class="eyebrow">Your plan</span>
+    <h2>Turn intentions into if-then rules</h2>
+    <p class="lede">"Implementation intentions", meaning plans of the form <em>"When X happens, I will do Y"</em>, are one of the best-replicated tools in behaviour-change research. They hand the decision to a cue instead of to willpower in the moment. Your plan is saved in this browser.</p>
+    <div class="plan-grid">
+      <div class="card plan-box">
+        <h3>My chosen methods</h3>
+        <p class="small muted" id="planEmpty">Nothing yet. Add methods from the toolkit above.</p>
+        <ul class="plan-list" id="planMethods"></ul>
+      </div>
+      <div class="card plan-box">
+        <h3>My if-then rules</h3>
+        <div class="ifthen">
+          <div class="ifthen-row"><label for="ifSel">When…</label>
+            <select id="ifSel"></select>
+            <input id="ifCustom" placeholder="Describe your own trigger…" style="display:none">
+          </div>
+          <div class="ifthen-row"><label for="thenSel">…then I will</label>
+            <select id="thenSel"></select>
+            <input id="thenCustom" placeholder="Describe what you'll do instead…" style="display:none">
+          </div>
+          <button class="btn btn-primary btn-sm" id="addRule" style="justify-self:start">+ Add rule</button>
+        </div>
+        <ul class="plan-list" id="rules"></ul>
+      </div>
+    </div>
+    <div class="plan-actions">
+      <button class="btn btn-ghost btn-sm" id="copyPlan">📋 Copy plan as text</button>
+      <button class="btn btn-ghost btn-sm" id="printPlan">🖨️ Print / save PDF</button>
+      <button class="btn btn-ghost btn-sm" id="clearPlan">Clear plan</button>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap" style="background:var(--surface-2)">
+  <div class="wrap">
+    <span class="eyebrow">A 30-day structure</span>
+    <h2>One month, four steps</h2>
+    <p class="lede">A simple sequence based on the evidence: notice → redesign → replace → reset. Check tasks off as you go; progress saves automatically. Habits take a while to settle (a median of about 66 days in one well-known study), so treat this as the start, not the finish line.</p>
+    <div class="weeks" id="weeks"></div>
+    <div class="overall"><span id="overallTxt">0%</span><div class="track"><i id="overallBar"></i></div></div>
+  </div>
+</section>
+
+<!-- MYTHS -->
+<section id="myths">
+  <div class="wrap">
+    <span class="eyebrow">Myth vs. research</span>
+    <h2>What people get wrong</h2>
+    <p class="lede">Tap a card to flip it.</p>
+    <div class="myths" id="mythList"></div>
+  </div>
+</section>
+
+<!-- SLIPS -->
+<section id="slips" style="background:var(--surface-2)">
+  <div class="wrap">
+    <span class="eyebrow">Staying on track</span>
+    <h2>When you slip (you will)</h2>
+    <div class="two">
+      <div class="card">
+        <h3>The "what-the-hell" trap</h3>
+        <p>Relapse researchers call it the <em>abstinence violation effect</em>: one lapse ("I scrolled for an hour") gets read as total failure ("so I might as well give up"). That reaction does more harm than the lapse itself.</p>
+        <ol class="steps">
+          <li><strong>Call it a lapse, not a relapse.</strong> One evening is data, not a verdict.</li>
+          <li><strong>Get curious.</strong> What was the trigger: tired, bored, lonely, avoiding a task? Write it down.</li>
+          <li><strong>Patch the gap.</strong> Add one bit of friction or one new if-then rule aimed at that exact trigger.</li>
+          <li><strong>Resume at the next cue,</strong> not "on Monday".</li>
+        </ol>
+      </div>
+      <div class="card help">
+        <h3>When to get support</h3>
+        <p>Heavy phone use often travels with stress, anxiety, low mood, loneliness or ADHD, and sometimes the phone is how someone copes. Consider talking to a professional if:</p>
+        <ul>
+          <li>use is seriously hurting sleep, work, school or relationships, and self-help hasn't shifted it;</li>
+          <li>you feel distressed, panicky or low when you try to cut back;</li>
+          <li>the scrolling seems to cover something heavier you don't want to feel.</li>
+        </ul>
+        <p style="margin:0">Cognitive-behavioural approaches have been tested for problematic smartphone and internet use and can help. Treating the underlying stress or mood often makes the phone habit much easier to change.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section id="sources">
+  <div class="wrap">
+    <span class="eyebrow">References</span>
+    <h2>Sources</h2>
+    <p class="lede">Key studies behind this guide. Science on screens moves fast and many studies are small or short, so treat any single result with healthy caution.</p>
+    <ol class="sources">
+      <li>Castelo, N., Kushlev, K., Ward, A. F., Esterman, M., &amp; Reiner, P. B. (2025). Blocking mobile internet on smartphones improves sustained attention, mental health, and subjective well-being. <em>PNAS Nexus, 4</em>(2). <a href="https://academic.oup.com/pnasnexus/article/4/2/pgaf017/8016017" target="_blank" rel="noopener">link</a></li>
+      <li>Grüning, D. J., Riedel, F., &amp; Lorenz-Spreen, P. (2023). Directing smartphone use through the self-nudge app one sec. <em>PNAS, 120</em>(8). <a href="https://www.pnas.org/doi/10.1073/pnas.2213114120" target="_blank" rel="noopener">link</a></li>
+      <li>Brailovskaia, J., Delveaux, J., John, J., et al. (2022). Finding the "sweet spot" of smartphone use: Reduction or abstinence to increase well-being and healthy lifestyle?! <em>Journal of Experimental Psychology: Applied</em>. <a href="https://www.sciencedaily.com/releases/2022/04/220420133554.htm" target="_blank" rel="noopener">summary</a></li>
+      <li>Allcott, H., Gentzkow, M., &amp; Song, L. (2022). Digital Addiction. <em>American Economic Review, 112</em>(7), 2424–63. <a href="https://www.aeaweb.org/articles?id=10.1257%2Faer.20210867" target="_blank" rel="noopener">link</a></li>
+      <li>Allcott, H., Braghieri, L., Eichmeyer, S., &amp; Gentzkow, M. (2020). The Welfare Effects of Social Media. <em>American Economic Review, 110</em>(3), 629–76. <a href="https://www.aeaweb.org/articles?id=10.1257%2Faer.20190658" target="_blank" rel="noopener">link</a></li>
+      <li>Allcott, H., et al. (2024/2025). The effects of Facebook and Instagram on the 2020 election: A deactivation experiment (<em>PNAS</em>), and The effect of deactivating Facebook and Instagram on users' emotional state (NBER w33697). <a href="https://www.pnas.org/doi/10.1073/pnas.2321584121" target="_blank" rel="noopener">link</a></li>
+      <li>Hunt, M. G., Marx, R., Lipson, C., &amp; Young, J. (2018). No More FOMO: Limiting Social Media Decreases Loneliness and Depression. <em>Journal of Social and Clinical Psychology, 37</em>(10), 751–768. <a href="https://guilfordjournals.com/doi/10.1521/jscp.2018.37.10.751" target="_blank" rel="noopener">link</a></li>
+      <li>Holte, A. J., &amp; Ferraro, F. R. (2020/2023). True colors: Grayscale setting reduces screen time in college students. <em>The Social Science Journal</em>. <a href="https://www.tandfonline.com/doi/abs/10.1080/03623319.2020.1737461" target="_blank" rel="noopener">link</a></li>
+      <li>Dekker, C. A., &amp; Baumgartner, S. E. (2024). Is life brighter when your phone is not? The efficacy of a grayscale smartphone intervention addressing digital well-being. <em>Mobile Media &amp; Communication</em>. <a href="https://journals.sagepub.com/doi/10.1177/20501579231212062" target="_blank" rel="noopener">link</a></li>
+      <li>Fitz, N., Kushlev, K., Jagannathan, R., Lewis, T., Paliwal, D., &amp; Ariely, D. (2019). Batching smartphone notifications can improve well-being. <em>Computers in Human Behavior, 101</em>, 84–94. <a href="https://www.sciencedirect.com/science/article/abs/pii/S0747563219302596" target="_blank" rel="noopener">link</a></li>
+      <li>Kushlev, K., Proulx, J., &amp; Dunn, E. W. (2016). "Silence Your Phones": Smartphone Notifications Increase Inattention and Hyperactivity Symptoms. <em>Proc. CHI 2016</em>. <a href="https://dl.acm.org/doi/10.1145/2858036.2858359" target="_blank" rel="noopener">link</a></li>
+      <li>Dwyer, R. J., Kushlev, K., &amp; Dunn, E. W. (2018). Smartphone use undermines enjoyment of face-to-face social interactions. <em>Journal of Experimental Social Psychology, 78</em>, 233–239.</li>
+      <li>He, J., Tu, Z., Xiao, L., Su, T., &amp; Tang, Y. (2020). Effect of restricting bedtime mobile phone use on sleep, arousal, mood, and working memory: A randomized pilot trial. <em>PLOS ONE, 15</em>(2). <a href="https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0228756" target="_blank" rel="noopener">link</a></li>
+      <li>Radtke, T., Apel, T., Schenkel, K., Keller, J., &amp; von Lindern, E. (2022). Digital detox: An effective solution in the smartphone era? A systematic literature review. <em>Mobile Media &amp; Communication, 10</em>(2). <a href="https://journals.sagepub.com/doi/10.1177/20501579211028647" target="_blank" rel="noopener">link</a></li>
+      <li>Ward, A. F., Duke, K., Gneezy, A., &amp; Bos, M. W. (2017). Brain Drain: The Mere Presence of One's Own Smartphone Reduces Available Cognitive Capacity. <em>JACR, 2</em>(2); and Ruiz Pardo, A. C., &amp; Minda, J. P. (2022). Reexamining the "brain drain" effect: A replication. <em>Acta Psychologica</em>. <a href="https://pubmed.ncbi.nlm.nih.gov/36007374/" target="_blank" rel="noopener">link</a></li>
+      <li>Goodyear, V. A., et al. (2025). School phone policies and their association with mental wellbeing, phone use, and social media use (SMART Schools). <em>The Lancet Regional Health – Europe</em>. <a href="https://www.thelancet.com/journals/lanepe/article/PIIS2666-7762(25)00003-1/fulltext" target="_blank" rel="noopener">link</a></li>
+      <li>Gollwitzer, P. M., &amp; Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis of effects and processes. <em>Advances in Experimental Social Psychology, 38</em>, 69–119.</li>
+      <li>Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., &amp; Wardle, J. (2010). How are habits formed: Modelling habit formation in the real world. <em>European Journal of Social Psychology, 40</em>(6), 998–1009.</li>
+      <li>Bowen, S., &amp; Marlatt, G. A. (2009). Surfing the urge: Brief mindfulness-based intervention for college student smokers. <em>Psychology of Addictive Behaviors, 23</em>(4), 666–671.</li>
+      <li>Marlatt, G. A., &amp; Gordon, J. R. (1985). <em>Relapse Prevention.</em> Guilford Press (abstinence violation effect).</li>
+      <li>Eyal, N. (2014). <em>Hooked: How to Build Habit-Forming Products.</em> (Trigger–action–reward–investment model, used here as a teaching framework.)</li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Reclaim.</strong> An educational summary of published research, not medical advice. Findings are simplified for readability; follow the links for the full studies.</p>
+    <p>Research compiled September 2026.</p>
+  </div>
+</footer>
+
+<a href="#plan" class="pill" id="pill">My plan <b id="pillCount">0</b></a>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- storage (safe) ---------- */
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem("reclaim:"+k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem("reclaim:"+k, JSON.stringify(v)); }catch(e){} }
+};
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("show"),2200); }
+
+/* ---------- theme ---------- */
+const savedTheme = store.get("theme", null);
+if(savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+$("#themeBtn").addEventListener("click", ()=>{
+  const cur = document.documentElement.getAttribute("data-theme") ||
+    (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const next = cur === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  store.set("theme", next);
+});
+
+/* ---------- METHODS DATA ---------- */
+const CATS = {
+  env:   {name:"Environment", color:"var(--accent)", soft:"var(--accent-soft)"},
+  fric:  {name:"Friction & settings", color:"var(--violet)", soft:"var(--violet-soft)"},
+  mind:  {name:"Mind & habits", color:"var(--coral)", soft:"var(--coral-soft)"},
+  reset: {name:"Bigger resets", color:"var(--gold)", soft:"var(--gold-soft)"}
+};
+const EFFORT = ["", "Low effort", "Medium effort", "High effort"];
+const EV = ["", "Emerging", "Some evidence", "Moderate", "Good", "Strong"];
+
+const METHODS = [
+  { id:"reduce1h", cat:"reset", icon:"⏳", title:"Cut one hour a day, not everything",
+    sum:"A modest, specific reduction beat total abstinence at keeping gains months later.",
+    ev:4, effort:2,
+    finding:"In a randomised trial of 619 people, the group told to use their phone 1 hour less per day for a week still used it ~45 min less daily four months later, with higher life satisfaction, more physical activity and fewer depression and anxiety symptoms. The full-abstinence group improved too, but the reduction group fared best over the long run.",
+    cite:"Brailovskaia et al., 2022",
+    steps:["Look up your current daily average in Screen Time / Digital Wellbeing.","Set a target of exactly 60 minutes less (e.g. 4h → 3h).","Choose where that hour comes from, usually one or two specific apps or times of day.","Set the OS app limit to enforce it and review after 7 days."],
+    caveat:"Participants were mostly German adults; one-week interventions show smaller effects in some other samples." },
+
+  { id:"nomobileweb", cat:"reset", icon:"📵", title:"Two weeks without mobile internet",
+    sum:"Keep calls and texts, drop the web and apps on your phone. Use the internet on a computer.",
+    ev:4, effort:3,
+    finding:"In a preregistered randomised trial, blocking mobile internet for 2 weeks improved sustained attention (by roughly the amount it normally declines over 10 years of ageing), mental health and well-being; 91% improved on at least one outcome. People spent the freed time socialising in person, exercising and outdoors, and those activities explained much of the benefit.",
+    cite:"Castelo et al., PNAS Nexus 2025",
+    steps:["Pick a 2-week window without travel or on-call duties.","Turn off mobile data and Wi-Fi on the phone, or use a blocker app (or a simple \"dumb\" phone).","Tell key people to call or text you; keep maps and banking as whitelisted exceptions if needed.","Plan what you'll do with the time: people, movement, outdoors.","Afterwards, re-add only the apps you truly missed."],
+    caveat:"Many participants found it hard to stick with fully. Even partial compliance helped, but expect it to be demanding." },
+
+  { id:"deactivate", cat:"reset", icon:"🧊", title:"Deactivate a social platform for 4–6 weeks",
+    sum:"Take a proper break from the one app that pulls hardest, long enough to reset the habit.",
+    ev:5, effort:2,
+    finding:"In large randomised experiments (2,700 and ~35,000 users), deactivating Facebook or Instagram for 4–6 weeks modestly improved happiness and reduced anxiety and depression symptoms. After the break, people used the platform less than before, which suggests the habit had weakened.",
+    cite:"Allcott et al., AER 2020; PNAS 2024",
+    steps:["Choose your most compulsive platform.","Use the official \"deactivate\" (not delete) option so nothing is lost.","Mark the end date in your calendar: 4 weeks minimum.","On return, decide deliberately how and when you'll use it."],
+    caveat:"Effects on mood are real but small on average; some people also lost news knowledge." },
+
+  { id:"socialcap", cat:"fric", icon:"⏱️", title:"Cap social media at ~30 min/day",
+    sum:"Roughly 10 minutes per platform, enforced with app timers.",
+    ev:3, effort:1,
+    finding:"University students randomised to limit Facebook, Instagram and Snapchat to 10 min each per day for 3 weeks showed significant drops in loneliness and depression compared with controls. Both groups became less anxious and less afraid of missing out, which hints that simply tracking use helps too.",
+    cite:"Hunt et al., 2018",
+    steps:["Open Screen Time (iOS) or Digital Wellbeing (Android).","Set a daily limit of 10–15 min per social app.","Put the passcode for overriding limits in someone else's hands, or make it long and annoying.","Check your weekly report every Sunday."],
+    caveat:"Small sample (n≈143) of US undergraduates; limits are easy to override if you set the passcode yourself." },
+
+  { id:"precommit", cat:"fric", icon:"🔒", title:"Pre-commit to limits in advance",
+    sum:"Decide your limits while calm, and make them binding for the tempted version of you.",
+    ev:4, effort:1,
+    finding:"In a randomised experiment, simply giving people a tool to set future screen-time limits substantially reduced use. The researchers estimate that self-control problems drive about 31% of social media use, and that people underestimate how habit-forming apps are.",
+    cite:"Allcott, Gentzkow & Song, AER 2022",
+    steps:["Set limits the evening before, not in the moment.","Use blockers with a \"locked mode\" (e.g. schedule-based blocks you can't undo).","Schedule blocks for your weakest windows: first hour after waking, last hour before bed.","Add stakes if you like: a bet with a friend or a donation if you break it."],
+    caveat:"Works best when the lock is genuinely hard to bypass." },
+
+  { id:"pause", cat:"fric", icon:"🫁", title:"Add a pause before opening apps",
+    sum:"A few seconds of friction (a breath, a question) interrupts autopilot.",
+    ev:3, effort:1,
+    finding:"A 6-week field study (280 users) of the \"one sec\" app, which shows a short breathing pause before a chosen app opens, found 57% fewer app openings. In 36% of attempts people closed the app after the pause, and attempts themselves fell 37% over time.",
+    cite:"Grüning et al., PNAS 2023",
+    steps:["Install a pause app (e.g. one sec, ScreenZen) or create an iOS Shortcut automation.","Apply it only to your 2–3 most compulsive apps.","Use the pause to ask: \"What did I come here for?\"","Gradually lengthen the delay if you find yourself skipping through it."],
+    caveat:"Study was by the app's creators, and users who opt in may be more motivated than average." },
+
+  { id:"grayscale", cat:"fric", icon:"⚫", title:"Switch the screen to grayscale",
+    sum:"Colour is part of what makes feeds and badges so eye-catching. Remove it.",
+    ev:3, effort:1,
+    finding:"Students with phones set to grayscale for about 9 days cut screen time by ~38 minutes a day, mostly on social media and browsing. A 2024 study also found reduced screen time and improved digital well-being. Video use was largely unaffected.",
+    cite:"Holte & Ferraro 2020; Dekker & Baumgartner 2024",
+    steps:["iPhone: Settings → Accessibility → Display & Text Size → Color Filters → Grayscale.","Android: Settings → Digital Wellbeing → Bedtime/Wind-down → Grayscale (or Accessibility → Color correction).","iPhone tip: set Accessibility Shortcut to Color Filters so triple-click toggles it for photos and maps."],
+    caveat:"Small samples and short durations; the effect may wear off as novelty fades." },
+
+  { id:"notifs", cat:"fric", icon:"🔕", title:"Batch notifications (don't just kill them all)",
+    sum:"Get non-urgent alerts delivered a few times a day in a summary.",
+    ev:3, effort:1,
+    finding:"In a randomised field study (n=237), getting notifications in 3 daily batches made people more attentive and productive, improved mood and increased feelings of control. Hourly batches did little, and switching all notifications off increased anxiety and FOMO. Separately, a week with alerts off and the phone out of reach lowered inattention and hyperactivity symptoms compared with a week of alerts on.",
+    cite:"Fitz et al. 2019; Kushlev et al. 2016",
+    steps:["Keep real-time alerts only for people (calls and messages from real humans).","Turn on iOS Scheduled Summary or Android notification bundling, 3 times a day.","Turn off badges (red dots) for everything else.","Review: for each app that pings, ask \"Would I pay for this interruption?\""],
+    caveat:"Going to zero notifications can backfire through anxiety. Batching was the sweet spot." },
+
+  { id:"outofsight", cat:"env", icon:"🚪", title:"Out of sight, out of reach",
+    sum:"Put the phone in another room or a bag during focus time and meals.",
+    ev:3, effort:1,
+    finding:"When phones sat on the table during meals with friends, people enjoyed the meal less and felt more distracted (field experiment, ~300 people). Keeping the phone away with alerts off reduced inattention. The famous \"brain drain\" finding (mere presence lowers cognitive capacity) did not replicate reliably, so distance mainly works by removing easy access, not by some magic of proximity.",
+    cite:"Dwyer et al. 2018; Kushlev et al. 2016; replication 2022",
+    steps:["Create a \"phone home\": a charging spot outside your workspace and bedroom.","For deep work, put it in another room, not face-down on the desk.","Phone stack at meals: everyone's phone in the middle, first to grab it does the dishes."],
+    caveat:"Evidence is about interruptions and access, not about the phone's physical presence alone." },
+
+  { id:"bedroom", cat:"env", icon:"🌙", title:"Keep the phone out of bed",
+    sum:"Charge it outside the bedroom and stop using it ~30–60 min before sleep.",
+    ev:3, effort:2,
+    finding:"In a randomised pilot trial, avoiding the phone for 30 minutes before bed for 4 weeks shortened time to fall asleep (~12 min), lengthened sleep (~18 min), improved sleep quality, positive mood and working memory. Studies of in-bed use point to mental arousal, not just blue light, as the key problem.",
+    cite:"He et al., PLOS ONE 2020",
+    steps:["Buy a £/€/$10 alarm clock so the phone doesn't need to be your alarm.","Set a nightly charging spot in the kitchen or hallway.","Schedule Downtime / Bedtime mode to start 45 min before sleep.","Keep a paper book or journal by the bed as the replacement."],
+    caveat:"The pilot trial was small (n=38); larger studies are mixed but most point the same way." },
+
+  { id:"homescreen", cat:"env", icon:"📱", title:"Redesign your home screen",
+    sum:"Only tools on screen one. Move tempting apps into folders or delete them from the phone.",
+    ev:2, effort:1,
+    finding:"This builds on the same friction principle tested in the pause-app and limit studies: small increases in effort cut impulsive opening. Deleting a social app from your phone while keeping it on a computer adds lots of friction without cutting ties. Direct trials of home-screen layouts are limited.",
+    cite:"Friction principle; see Grüning 2023, Allcott 2022",
+    steps:["First screen: only tools (maps, calendar, camera, notes, calls).","Move everything else off screen one; open apps by search instead of icons.","Delete the 1–2 apps you lose the most time to and use their web versions (worse on purpose).","Log out after each session so logging in is a small hurdle."],
+    caveat:"Rated \"emerging\": sensible and widely recommended, but not directly tested in large trials." },
+
+  { id:"analog", cat:"env", icon:"⌚", title:"Swap in single-purpose tools",
+    sum:"A watch, alarm clock, paper notebook, e-reader or music player removes excuses to unlock.",
+    ev:2, effort:1,
+    finding:"Many checks start with a legitimate task (time, alarm, a note) and slide into feeds. Removing the \"gateway\" reasons to unlock reduces those slides. This rests on habit-cue logic rather than dedicated trials.",
+    cite:"Habit & cue research",
+    steps:["List the 5 non-social reasons you pick up your phone.","Replace the easiest two with an object (watch, alarm clock, notebook).","Notice how many pickups disappear in a week."],
+    caveat:"Low evidence, low cost, low risk." },
+
+  { id:"ifthen", cat:"mind", icon:"🧭", title:"If-then plans for your triggers",
+    sum:"\"When I sit on the bus, I will read my book.\" Link a specific cue to a specific response.",
+    ev:4, effort:1,
+    finding:"A meta-analysis of 94 studies found implementation intentions have a medium-to-large effect (d≈0.65) on reaching goals across many behaviours, because the cue triggers the plan automatically instead of relying on in-the-moment willpower.",
+    cite:"Gollwitzer & Sheeran 2006",
+    steps:["Identify your top 3 triggers (e.g. waking up, queues, starting work).","Write one if-then per trigger. Be concrete about place, time and action.","Use the builder in \"My plan\" below.","Say them aloud once; repetition strengthens the cue link."],
+    caveat:"The meta-analysis spans many behaviours; direct tests on phone use are fewer." },
+
+  { id:"replace", cat:"mind", icon:"🌿", title:"Plan what replaces the scroll",
+    sum:"Benefits come from what you do instead. Decide in advance.",
+    ev:3, effort:2,
+    finding:"In the mobile-internet trial, much of the mental-health gain was explained by time moving to in-person socialising, exercise and nature. A systematic review of \"digital detox\" studies found mixed results and suggested one reason: studies rarely controlled what people did with the time.",
+    cite:"Castelo et al. 2025; Radtke et al. 2022",
+    steps:["Make a \"boredom menu\": 5 things under 5 minutes (stretch, text a friend, step outside, 1 page of a book, tidy one thing).","Make a longer list for evenings (walk, call, class, hobby, sport).","Keep the materials visible and within reach, exactly where the phone used to be."],
+    caveat:"Also matters for mood: substituting other screens (TV binges) may not bring the same benefit." },
+
+  { id:"urgesurf", cat:"mind", icon:"🌊", title:"Urge surfing",
+    sum:"Watch the craving rise and fall without acting on it. Try the tool on this page.",
+    ev:2, effort:1,
+    finding:"Urge surfing, a brief mindfulness technique, reduced smoking among students who wanted to cut down, and is a core skill in mindfulness-based relapse prevention. Its application to phones is plausible but less studied.",
+    cite:"Bowen & Marlatt 2009",
+    steps:["When you notice the reach, pause.","Name it: \"There's the urge.\" Notice where you feel it in the body.","Breathe slowly for 60–90 seconds and watch it change.","Then choose deliberately: use the phone for a purpose, or don't."],
+    caveat:"Evidence comes mainly from substance use; phone-specific trials are limited." },
+
+  { id:"audit", cat:"mind", icon:"📊", title:"Audit and self-monitor",
+    sum:"Know your real numbers and review them weekly. Awareness is the foundation for everything else.",
+    ev:2, effort:1,
+    finding:"In the social-media-limit study, the control group, who only tracked their use, also became less anxious and less afraid of missing out. On its own, tracking tends to have small effects on actual time, but it makes other methods work better and shows your real triggers.",
+    cite:"Hunt et al. 2018",
+    steps:["Note your daily average, pickups and top 3 apps.","For 3 days, jot a word every time you pick up: why? (bored, tired, avoiding work, notification).","Review weekly: compare numbers and adjust one thing."],
+    caveat:"Tracking alone rarely changes behaviour much. Pair it with an environmental change." },
+
+  { id:"together", cat:"env", icon:"🤝", title:"Do it with other people",
+    sum:"Shared rules (phone-free dinners, a group challenge, a buddy) make change social.",
+    ev:2, effort:2,
+    finding:"Phones at the table measurably reduce enjoyment of time together, so shared phone-free times protect relationships. Social commitment and accountability are well-established behaviour-change tools, although phone-specific group trials are scarce. School-wide bans alone showed no clear wellbeing effect in one UK study, because students still used phones 4–6 hours a day outside school.",
+    cite:"Dwyer 2018; Goodyear 2025",
+    steps:["Agree on 1–2 household rules (no phones at meals; phones charge outside bedrooms).","Find a buddy and share weekly screen-time screenshots.","Parents: model the behaviour. Kids copy what they see, not what they're told."],
+    caveat:"Rules imposed in one setting only (like school) may not change total use." }
+];
+
+/* ---------- LOOP ---------- */
+const LOOP = [
+  {t:"Trigger", c:"var(--accent)", txt:"Something cues the reach. It can be <strong>external</strong> (a buzz, a red badge, the phone lying in view) or, more often, <strong>internal</strong>: boredom, awkwardness, stress, loneliness, or dodging a hard task.",
+   brk:"<b>Break it:</b> batch notifications, remove badges, keep the phone out of sight, and learn your internal triggers with a 3-day pickup log.", links:["notifs","outofsight","audit"]},
+  {t:"Action", c:"var(--violet)", txt:"The easiest possible action follows: unlock, tap, swipe. Face ID and infinite feeds make the behaviour almost frictionless, so it happens before you've made a decision.",
+   brk:"<b>Break it:</b> add friction: a pause before opening, apps off the home screen, logouts, grayscale.", links:["pause","homescreen","grayscale"]},
+  {t:"Reward", c:"var(--coral)", txt:"Sometimes you find something great, sometimes nothing. This <strong>variable reward</strong> (like a slot machine) is the most habit-forming schedule of reinforcement known in psychology. The unpredictability keeps you pulling.",
+   brk:"<b>Break it:</b> prepare better rewards for the same moments (a boredom menu, people, movement) and surf the urge until it passes.", links:["replace","urgesurf"]},
+  {t:"Hook-in", c:"var(--gold)", txt:"Streaks, likes, followers, unfinished series and posted content give you a stake that brings you back. Each loop also strengthens the cue→action link, until it runs on autopilot.",
+   brk:"<b>Break it:</b> take a longer break from one platform to weaken the loop, and pre-commit to limits for the tempted version of you.", links:["deactivate","precommit"]}
+];
+let loopI = 0;
+function renderLoop(){
+  const L = LOOP[loopI];
+  $("#loopTag").textContent = "Stage " + (loopI+1) + " of 4";
+  $("#loopTag").style.color = L.c;
+  $("#loopTitle").textContent = L.t;
+  $("#loopText").innerHTML = L.txt;
+  $("#loopBreak").innerHTML = L.brk + '<div class="recs" style="margin-top:10px">' +
+    L.links.map(id => { const m = METHODS.find(x=>x.id===id); return `<a class="chip" href="#m-${id}" data-jump="${id}">${m.icon} ${esc(m.title)}</a>`; }).join("") + "</div>";
+  document.querySelectorAll(".loop-node").forEach((g,i)=>{
+    const c = g.querySelector("circle");
+    c.setAttribute("fill", i===loopI ? LOOP[i].c : "var(--surface)");
+    c.setAttribute("stroke", LOOP[i].c); c.setAttribute("stroke-width", "3");
+    c.setAttribute("r", i===loopI ? 52 : 44);
+    g.querySelector("text").setAttribute("fill", i===loopI ? "var(--bg)" : "var(--ink)");
+  });
+  $("#loopTabs").innerHTML = LOOP.map((l,i)=>`<button aria-pressed="${i===loopI}" data-l="${i}">${i+1}. ${l.t}</button>`).join("");
+}
+document.querySelectorAll(".loop-node").forEach(g=>{
+  const go = ()=>{ loopI = +g.dataset.i; renderLoop(); };
+  g.addEventListener("click", go);
+  g.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); }});
+});
+$("#loopTabs").addEventListener("click", e=>{ const b=e.target.closest("button"); if(b){ loopI=+b.dataset.l; renderLoop(); }});
+renderLoop();
+
+/* ---------- CALCULATOR ---------- */
+function calc(){
+  const h = +$("#hrs").value, age = +$("#age").value, cut = Math.min(+$("#cut").value, h);
+  const fmtH = v => (v%1===0 ? v : v.toFixed(2).replace(/0$/,"")) + " h";
+  $("#hrsOut").textContent = fmtH(h); $("#ageOut").textContent = age; $("#cutOut").textContent = fmtH(cut);
+  const remainingYears = Math.max(0, 80 - age);
+  const totalHours = h * 365 * remainingYears;
+  const wakingYears = totalHours / (16*365);
+  $("#oYears").textContent = wakingYears.toFixed(1) + " years";
+  $("#oYear").textContent = Math.round(h*365/24);
+  $("#oPct").textContent = Math.round(h/16*100) + "%";
+  $("#oSaved").textContent = Math.round(cut*365);
+  $("#oBooks").textContent = Math.round(cut*365/7);
+  const bar = $("#lifebar"); bar.innerHTML = "";
+  for(let i=0;i<16;i++){ const s=document.createElement("i"); if(i < Math.round(h)) s.className="on"; bar.appendChild(s); }
+  const saved = cut*365;
+  const lang = saved >= 600 ? "enough time to reach <strong>conversational level in a new language</strong> (~600 h for many languages)" : "about <strong>" + Math.round(saved/600*100) + "%</strong> of what it takes to reach conversational level in a new language";
+  $("#instead").innerHTML = `Cutting <strong>${fmtH(cut)}</strong> a day frees <strong>${Math.round(saved)} hours a year</strong>: ${lang}, or <strong>${Math.round(saved/1.5)} long dinners</strong> with people you like.`;
+}
+["hrs","age","cut"].forEach(id => $("#"+id).addEventListener("input", calc));
+calc();
+
+/* ---------- QUIZ ---------- */
+const QS = [
+  {q:"I pick up my phone without really deciding to.", rec:["pause","homescreen","grayscale"]},
+  {q:"I end up using it longer than I meant to.", rec:["precommit","socialcap","reduce1h"]},
+  {q:"I feel restless or uneasy when I can't check it.", rec:["urgesurf","notifs"]},
+  {q:"It cuts into my sleep.", rec:["bedroom","analog"]},
+  {q:"It pulls my attention away from people I'm with.", rec:["together","outofsight"]},
+  {q:"I've tried to cut back before and it didn't stick.", rec:["precommit","ifthen","deactivate"]},
+  {q:"It gets in the way of work, study or focus.", rec:["outofsight","notifs","nomobileweb"]},
+  {q:"I use it to escape boredom, stress or loneliness.", rec:["replace","urgesurf","ifthen"]}
+];
+const OPTS = ["Rarely","Sometimes","Often","Almost always"];
+let answers = store.get("quiz", Array(QS.length).fill(null));
+function renderQuiz(){
+  $("#quizQs").innerHTML = QS.map((q,i)=>`
+    <div class="q"><p>${i+1}. ${esc(q.q)}</p>
+      <div class="opts" role="group" aria-label="Answer ${i+1}">
+        ${OPTS.map((o,j)=>`<button data-q="${i}" data-v="${j}" aria-pressed="${answers[i]===j}">${o}</button>`).join("")}
+      </div></div>`).join("");
+}
+$("#quizQs").addEventListener("click", e=>{
+  const b = e.target.closest("button[data-q]"); if(!b) return;
+  answers[+b.dataset.q] = +b.dataset.v; store.set("quiz", answers);
+  b.parentElement.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+});
+$("#quizGo").addEventListener("click", ()=>{
+  const missing = answers.filter(a=>a===null).length;
+  if(missing){ toast("Answer all 8 first (" + missing + " left)"); return; }
+  showResult(true);
+});
+$("#quizReset").addEventListener("click", ()=>{ answers = Array(QS.length).fill(null); store.set("quiz", answers); renderQuiz(); $("#quizResult").classList.remove("show"); });
+function showResult(scroll){
+  const score = answers.reduce((a,b)=>a+b,0), max = QS.length*3;
+  let band, text;
+  if(score<=6){ band="Light pull"; text="Your phone mostly works for you. A couple of small tweaks can protect that, especially around sleep and focus."; }
+  else if(score<=12){ band="Noticeable pull"; text="Like most people, you feel the tug. Environmental changes (friction, notifications, where the phone lives) will likely bring the quickest wins."; }
+  else if(score<=18){ band="Strong pull"; text="The phone takes a real toll on your time and attention. Stack several environment changes, add pre-committed limits, and consider a bigger reset like cutting an hour a day or taking a platform break."; }
+  else { band="Heavy pull"; text="Your phone use is significantly shaping your days. Structural changes plus a bigger reset are recommended. If it feels tied to stress, low mood or anxiety, talking to a professional can make the change much easier (see \"When to get support\")."; }
+  const tally = {};
+  QS.forEach((q,i)=>{ if(answers[i]>=2) q.rec.forEach((r,k)=>{ tally[r]=(tally[r]||0)+answers[i]+(3-k)*.1; }); });
+  let recs = Object.entries(tally).sort((a,b)=>b[1]-a[1]).map(x=>x[0]).slice(0,5);
+  if(!recs.length) recs = ["notifs","grayscale","bedroom"];
+  const pct = score/max*100;
+  const r = $("#quizResult");
+  r.innerHTML = `<div class="small muted">Your score: ${score} / ${max}</div>
+    <h3 style="margin:.2em 0">${band}</h3>
+    <div class="meter"><i style="left:0%"></i></div>
+    <div class="small muted" style="display:flex;justify-content:space-between"><span>light</span><span>heavy</span></div>
+    <p style="margin-top:12px">${text}</p>
+    <strong class="small">Best-matched methods for your answers:</strong>
+    <div class="recs">${recs.map(id=>{const m=METHODS.find(x=>x.id===id);return `<a class="chip" href="#m-${id}" data-jump="${id}">${m.icon} ${esc(m.title)}</a>`;}).join("")}</div>
+    <button class="btn btn-primary btn-sm" id="addRecs" style="margin-top:14px">+ Add all to my plan</button>`;
+  r.classList.add("show");
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ r.querySelector(".meter i").style.left = pct + "%"; }));
+  $("#addRecs").addEventListener("click", ()=>{ recs.forEach(id=>{ if(!plan.includes(id)) plan.push(id); }); savePlan(); toast("Added " + recs.length + " methods to your plan"); });
+  if(scroll) r.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+renderQuiz();
+if(answers.every(a=>a!==null)) showResult(false);
+
+/* ---------- MATRIX ---------- */
+function renderMatrix(){
+  const rows = [{lab:"Strong", f:m=>m.ev>=4},{lab:"Moderate", f:m=>m.ev===3},{lab:"Emerging", f:m=>m.ev<=2}];
+  let html = `<div></div>` + [1,2,3].map(e=>`<div class="hd">${EFFORT[e]}</div>`).join("");
+  rows.forEach((r,ri)=>{
+    html += `<div class="rh">${r.lab}</div>`;
+    [1,2,3].forEach(e=>{
+      const items = METHODS.filter(m=>m.effort===e && r.f(m));
+      html += `<div class="cell ${ri===0&&e===1 ? "sweet":""}">${items.map(m=>`<button data-jump="${m.id}">${m.icon} ${esc(m.title)}</button>`).join("")}</div>`;
+    });
+  });
+  $("#matrix").innerHTML = html;
+}
+renderMatrix();
+
+/* ---------- METHODS LIST ---------- */
+let plan = store.get("plan", []);
+let filter = "all", sort = "evidence";
+function dots(n,max){ let s='<span class="dots">'; for(let i=1;i<=max;i++) s+=`<i class="${i<=n?"on":""}"></i>`; return s+"</span>"; }
+function renderFilters(){
+  const fs = [["all","All"]].concat(Object.entries(CATS).map(([k,v])=>[k,v.name]));
+  $("#filters").innerHTML = fs.map(([k,n])=>`<button data-f="${k}" aria-pressed="${filter===k}">${n}</button>`).join("");
+}
+function renderMethods(){
+  let list = METHODS.filter(m => filter==="all" || m.cat===filter);
+  if(sort==="evidence") list.sort((a,b)=>b.ev-a.ev || a.effort-b.effort);
+  if(sort==="effort") list.sort((a,b)=>a.effort-b.effort || b.ev-a.ev);
+  if(sort==="az") list.sort((a,b)=>a.title.localeCompare(b.title));
+  $("#count").textContent = list.length + " methods";
+  $("#methodList").innerHTML = list.map(m=>{
+    const c = CATS[m.cat], on = plan.includes(m.id);
+    return `<article class="card m" id="m-${m.id}">
+      <div class="m-top"><div class="m-ico" style="background:${c.soft}">${m.icon}</div>
+        <div><div class="cat" style="color:${c.color}">${c.name}</div><h3>${esc(m.title)}</h3></div></div>
+      <p class="sum">${esc(m.sum)}</p>
+      <div class="badges"><span class="badge">Evidence ${dots(m.ev,5)} ${EV[m.ev]}</span><span class="badge">${EFFORT[m.effort]}</span></div>
+      <details><summary>Research</summary>
+        <div class="finding"><b>What the studies found · ${esc(m.cite)}</b>${esc(m.finding)}</div>
+        <p class="caveat">Caveat: ${esc(m.caveat)}</p></details>
+      <details><summary>How to do it</summary><ol>${m.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol></details>
+      <div class="m-foot"><button class="addbtn" data-add="${m.id}" aria-pressed="${on}">${on?"✓ In my plan":"+ Add to plan"}</button></div>
+    </article>`;
+  }).join("") || `<p class="empty">No methods in this category.</p>`;
+}
+$("#filters").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; filter=b.dataset.f; renderFilters(); renderMethods(); });
+$("#sort").addEventListener("change", e=>{ sort=e.target.value; renderMethods(); });
+$("#methodList").addEventListener("click", e=>{
+  const b = e.target.closest("[data-add]"); if(!b) return;
+  const id = b.dataset.add;
+  if(plan.includes(id)){ plan = plan.filter(x=>x!==id); toast("Removed from plan"); }
+  else { plan.push(id); toast("Added to your plan ✓"); }
+  savePlan();
+});
+renderFilters(); renderMethods();
+
+/* jump links */
+document.addEventListener("click", e=>{
+  const j = e.target.closest("[data-jump]"); if(!j) return;
+  e.preventDefault();
+  const id = j.dataset.jump;
+  const m = METHODS.find(x=>x.id===id);
+  if(filter!=="all" && m.cat!==filter){ filter="all"; renderFilters(); renderMethods(); }
+  const el = document.getElementById("m-"+id);
+  if(el){ el.scrollIntoView({behavior:"smooth", block:"center"}); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+    const d = el.querySelector("details"); if(d) d.open = true; }
+});
+
+/* ---------- PLAN ---------- */
+const IFS = ["I wake up in the morning","I get into bed","I'm waiting in a queue or on transport","I sit down to work or study","I feel bored","I feel stressed or anxious","I'm eating a meal with others","I finish a task","I sit on the toilet","I feel the urge to check my phone","Other…"];
+const THENS = ["take three slow breaths and ask \"what am I here for?\"","read one page of my book","stand up, stretch and drink water","put the phone in another room","text or call a real person instead of scrolling","step outside for two minutes","write the thought down on paper","do the first 2 minutes of the task","leave the phone charging outside the bedroom","surf the urge for 90 seconds","Other…"];
+let rules = store.get("rules", []);
+$("#ifSel").innerHTML = IFS.map(x=>`<option>${esc(x)}</option>`).join("");
+$("#thenSel").innerHTML = THENS.map(x=>`<option>${esc(x)}</option>`).join("");
+$("#ifSel").addEventListener("change", e=>{ $("#ifCustom").style.display = e.target.value==="Other…" ? "block":"none"; });
+$("#thenSel").addEventListener("change", e=>{ $("#thenCustom").style.display = e.target.value==="Other…" ? "block":"none"; });
+$("#addRule").addEventListener("click", ()=>{
+  const i = $("#ifSel").value==="Other…" ? $("#ifCustom").value.trim() : $("#ifSel").value;
+  const t = $("#thenSel").value==="Other…" ? $("#thenCustom").value.trim() : $("#thenSel").value;
+  if(!i || !t){ toast("Fill in both parts of the rule"); return; }
+  rules.push({i,t}); savePlan(); $("#ifCustom").value=""; $("#thenCustom").value=""; toast("Rule added ✓");
+});
+function savePlan(){
+  store.set("plan", plan); store.set("rules", rules);
+  $("#planEmpty").style.display = plan.length ? "none" : "block";
+  $("#planMethods").innerHTML = plan.map(id=>{ const m=METHODS.find(x=>x.id===id); return m ? `<li><span>${m.icon} <a href="#m-${id}" data-jump="${id}">${esc(m.title)}</a></span><button class="x" data-rm="${id}" aria-label="Remove">×</button></li>` : ""; }).join("");
+  $("#rules").innerHTML = rules.map((r,k)=>`<li><span class="rule"><b>When</b> ${esc(r.i)}, <b>I will</b> ${esc(r.t)}.</span><button class="x" data-rr="${k}" aria-label="Remove rule">×</button></li>`).join("");
+  const n = plan.length + rules.length;
+  $("#pillCount").textContent = n;
+  $("#pill").classList.toggle("show", n>0);
+  document.querySelectorAll("[data-add]").forEach(b=>{ const on = plan.includes(b.dataset.add); b.setAttribute("aria-pressed", on); b.textContent = on ? "✓ In my plan" : "+ Add to plan"; });
+}
+$("#planMethods").addEventListener("click", e=>{ const b=e.target.closest("[data-rm]"); if(!b) return; plan=plan.filter(x=>x!==b.dataset.rm); savePlan(); });
+$("#rules").addEventListener("click", e=>{ const b=e.target.closest("[data-rr]"); if(!b) return; rules.splice(+b.dataset.rr,1); savePlan(); });
+$("#clearPlan").addEventListener("click", ()=>{ if(!plan.length && !rules.length) return; if(confirm("Clear your whole plan?")){ plan=[]; rules=[]; savePlan(); } });
+$("#printPlan").addEventListener("click", ()=>window.print());
+$("#copyPlan").addEventListener("click", ()=>{
+  let txt = "MY SCREEN-TIME PLAN\n\nMethods:\n" + (plan.length ? plan.map(id=>{const m=METHODS.find(x=>x.id===id); return "• " + m.title + "\n   " + m.steps.join("\n   ");}).join("\n") : "(none yet)");
+  txt += "\n\nIf-then rules:\n" + (rules.length ? rules.map(r=>"• When " + r.i + ", I will " + r.t + ".").join("\n") : "(none yet)");
+  const done = ()=>toast("Plan copied to clipboard ✓");
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done, ()=>fallbackCopy(txt, done)); }
+  else fallbackCopy(txt, done);
+});
+function fallbackCopy(txt, done){ const ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); try{ document.execCommand("copy"); done(); }catch(e){ toast("Couldn't copy. Try printing instead."); } ta.remove(); }
+savePlan();
+
+/* ---------- ROADMAP ---------- */
+const WEEKS = [
+  {t:"Notice", tasks:["Write down your baseline: daily average, pickups, top 3 apps","Keep a 3-day pickup log: why did I reach for it?","Take the self-check above","Pick your 2–3 biggest triggers","Choose one \"reason\" for doing this (sleep, focus, people, calm)"]},
+  {t:"Redesign", tasks:["Batch notifications into 3 daily summaries; turn off badges","Home screen: tools only on page one","Turn on grayscale","Add a pause app to your 2–3 worst apps","Set up a charging spot outside the bedroom plus an alarm clock"]},
+  {t:"Replace", tasks:["Write your boredom menu (5 things under 5 min)","Create 3 if-then rules in \"My plan\"","Phone-free meals for the whole week","Schedule 2 in-person or outdoor activities","Try urge surfing at least 3 times"]},
+  {t:"Reset & keep", tasks:["Cut 1 hour/day from your baseline, or deactivate one platform","Pre-commit limits for your weakest time windows","Compare your numbers with week 1","Keep what worked; drop what didn't","Schedule a monthly 10-minute check-in with yourself"]}
+];
+let checks = store.get("checks", {});
+function renderWeeks(){
+  $("#weeks").innerHTML = WEEKS.map((w,wi)=>{
+    const done = w.tasks.filter((_,ti)=>checks[wi+"-"+ti]).length;
+    return `<div class="card week"><div class="bar" style="width:${done/w.tasks.length*100}%"></div>
+      <div class="wk">Week ${wi+1} · ${done}/${w.tasks.length}</div><h3>${w.t}</h3>
+      ${w.tasks.map((t,ti)=>`<label class="task"><input type="checkbox" data-k="${wi}-${ti}" ${checks[wi+"-"+ti]?"checked":""}><span>${esc(t)}</span></label>`).join("")}
+    </div>`;
+  }).join("");
+  const total = WEEKS.reduce((a,w)=>a+w.tasks.length,0), done = Object.values(checks).filter(Boolean).length;
+  const p = Math.round(done/total*100);
+  $("#overallTxt").textContent = p + "% done"; $("#overallBar").style.width = p + "%";
+}
+$("#weeks").addEventListener("change", e=>{ const k=e.target.dataset.k; if(!k) return; checks[k]=e.target.checked; store.set("checks",checks); renderWeeks(); if(Object.values(checks).filter(Boolean).length===20) toast("🎉 30 days complete. Keep going!"); });
+renderWeeks();
+
+/* ---------- MYTHS ---------- */
+const MYTHS = [
+  {m:"A weekend digital detox will reset me.", f:"A systematic review of 21 detox studies found mostly mixed or null effects. Short breaks can feel good, but lasting change comes from redesigning your everyday environment and habits. Moderate, sustained reduction beat total abstinence in a head-to-head trial."},
+  {m:"I just need more willpower.", f:"Economists estimate that about 31% of social media use comes from self-control problems, and people underestimate how habit-forming apps are. The most effective methods (limits, friction, distance) work because they don't rely on willpower in the moment."},
+  {m:"Turning off every notification is best.", f:"In a field experiment, switching notifications off entirely increased anxiety and fear of missing out. Batching them 3 times a day improved attention, mood and sense of control. Aim for fewer, predictable interruptions, not zero."},
+  {m:"Just having my phone nearby drains my brainpower.", f:"The famous 2017 \"brain drain\" study hasn't replicated reliably. Distance still helps, but mainly because it removes easy access and interruptions, not because of the phone's mere presence."},
+  {m:"Night mode solves bedtime scrolling.", f:"Blue light isn't the whole story. Engaging content keeps your mind aroused and pushes bedtime later. Cutting phone use before bed (not just dimming the screen) improved sleep onset, duration and quality in a randomised trial."},
+  {m:"Screen time is screen time.", f:"What you do and what you give up matter more than the raw number. Gains in trials came largely from time moving to people, exercise and nature. Messaging a friend isn't the same as endless autoplay."}
+];
+$("#mythList").innerHTML = MYTHS.map((x,i)=>`
+  <button class="flip" aria-pressed="false" aria-label="Myth ${i+1}. Tap to reveal the research">
+    <div class="flip-inner">
+      <div class="face front"><div class="lbl">Myth</div><p>"${esc(x.m)}"</p><div class="hint">Tap to see the research ↻</div></div>
+      <div class="face back"><div class="lbl">What the research says</div><p>${esc(x.f)}</p><div class="hint">Tap to flip back</div></div>
+    </div></button>`).join("");
+$("#mythList").addEventListener("click", e=>{ const b=e.target.closest(".flip"); if(b) b.setAttribute("aria-pressed", b.getAttribute("aria-pressed")!=="true"); });
+
+/* ---------- URGE TOOL ---------- */
+const URGE_MSGS = ["Notice the urge. Don't fight it, just watch it.","Where do you feel it? Hands, chest, jaw?","Breathe into that spot.","Picture it as a wave. It's rising…","…it's peaking. You don't have to act.","Notice it starting to change.","It's getting weaker, like every wave does.","What did you actually want just now? Rest? Connection? A break?","Almost there. Stay with the breath.","The wave has passed. You're choosing now."];
+let urgeTimer = null, breathTimer = null, urgeStart = 0;
+const DUR = 90;
+function stopUrge(finished){
+  clearInterval(urgeTimer); clearInterval(breathTimer); urgeTimer = null;
+  $("#core").style.transform = "scale(1)"; $("#breathLabel").textContent = finished ? "done" : "breathe";
+  $("#urgeBtn").textContent = finished ? "Surf again" : "Start 90 seconds";
+  $("#urgeTime").textContent = finished ? "Well done. Now choose deliberately." : "90 seconds";
+  if(finished){ $("#urgeMsg").textContent = "The urge peaked and passed without you obeying it. That's the skill."; }
+  else { $("#urgeMsg").textContent = "Ready when you are."; $("#urgeArc").style.strokeDashoffset = 301.6; }
+}
+$("#urgeBtn").addEventListener("click", ()=>{
+  if(urgeTimer){ stopUrge(false); return; }
+  urgeStart = Date.now(); $("#urgeBtn").textContent = "Stop";
+  let inhale = true;
+  const breathe = ()=>{ $("#core").style.transform = inhale ? "scale(1.7)" : "scale(1)"; $("#breathLabel").textContent = inhale ? "breathe in" : "breathe out"; inhale = !inhale; };
+  breathe(); breathTimer = setInterval(breathe, 4500);
+  const tick = ()=>{
+    const el = (Date.now()-urgeStart)/1000;
+    if(el >= DUR){ $("#urgeArc").style.strokeDashoffset = 0; stopUrge(true); return; }
+    $("#urgeArc").style.strokeDashoffset = 301.6 * (1 - el/DUR);
+    $("#urgeTime").textContent = Math.ceil(DUR-el) + " s left";
+    const msg = URGE_MSGS[Math.min(URGE_MSGS.length-1, Math.floor(el/(DUR/URGE_MSGS.length)))];
+    if($("#urgeMsg").textContent !== msg) $("#urgeMsg").textContent = msg;
+  };
+  tick(); urgeTimer = setInterval(tick, 250);
+});
+
+/* ---------- scroll: progress, active nav, reveal ---------- */
+const links = [...document.querySelectorAll(".navlinks a")];
+const secs = links.map(a => document.querySelector(a.getAttribute("href")));
+function onScroll(){
+  const h = document.documentElement;
+  $("#progress").style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + "%";
+  let cur = -1;
+  secs.forEach((s,i)=>{ if(s && s.getBoundingClientRect().top < 120) cur = i; });
+  links.forEach((a,i)=>a.classList.toggle("active", i===cur));
+  if(onScroll.last!==cur){ onScroll.last=cur; const nav=links[0].parentElement;
+    if(nav.scrollWidth > nav.clientWidth + 2){ const a=links[cur] || links[0]; nav.scrollTo({left: cur<0 ? 0 : a.offsetLeft - nav.offsetLeft - nav.clientWidth/2 + a.clientWidth/2, behavior:"smooth"}); } }
+}
+const navEl = document.querySelector(".navlinks");
+function navFade(){ const over = navEl.scrollWidth > navEl.clientWidth + 2;
+  navEl.classList.toggle("fade-r", over && navEl.scrollLeft + navEl.clientWidth < navEl.scrollWidth - 4);
+  navEl.classList.toggle("fade-l", over && navEl.scrollLeft > 4); }
+navEl.addEventListener("scroll", navFade, {passive:true}); addEventListener("resize", navFade); navFade();
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+if("IntersectionObserver" in window){
+  const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), {threshold:.15});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+} else document.querySelectorAll(".reveal").forEach(el=>el.classList.add("in"));
+})();
+</script>
+</body>
+</html>
